@@ -1,12 +1,12 @@
-d54fd84305e650597e1e158d98b12041 *DESCRIPTION
+fa2251d8c11037af15da885d386f583b *DESCRIPTION
 18fdf3691285685f7ee6ba47d5dfdcc9 *NAMESPACE
 56c93f4d7ef749630bcba2709316127c *R/RcppExports.R
 5fa5bdf3dec9a66540b994137f2cb6cf *R/VBel-package.R
 ebcbce390de470daa2fc4ac4ab631e80 *R/compute-AEL-functions.R
 201204b94149bc0f0f75baf399b0b6f2 *R/compute-GVA-functions.R
 66a8a8dec9a284d7a19725af40c589ad *R/diagnostic-plot.R
-b415cd8d100a9c14587149cf16633c33 *README.md
-c8b8095a3f7fb4131c3e5698447a71d3 *build/partial.rdb
+866a0d30f8848f9360f042b94d7b89dd *README.md
+d52d09c6bd1a14cdd91c23002be4ed8c *build/partial.rdb
 4345a46048771a9c73d366658cd5c66c *man/VBel-package.Rd
 e1fab9be6edcf356f8c09c28c9a8763b *man/compute_AEL.Rd
 8ed026309b3139b424f7b5a642a7ddbc *man/compute_GVA.Rd
@@ -16,7 +16,7 @@ b4f0b014ec53404e843dbc718fabf57e *src/Makevars.win
 56724f59c484e09546f8c4fe83567369 *src/RcppExports.cpp
 9e659bc9fd30299997c6e673d2080173 *src/compute-AEL-functions-Rcpp.cpp
 c269822b2e49085dd26649d216ee70be *src/compute-AEL-functions-Rcpp.h
-8a7c68f0c6c83e5d0223b875a942db51 *src/compute-GVA-functions-Rcpp.cpp
+9553b6aa21a84b69f7558366a2e48570 *src/compute-GVA-functions-Rcpp.cpp
 9ea73d4fdfe83adaa3a168da068d9b55 *tests/testthat.R
 92e6fb4b589226acdcc2bb5101bbf59a *tests/testthat/test-AEL.R
 fa17dec4afb0bd8098250c7db0fa0b02 *tests/testthat/test-GVA.R

@@ -2,7 +2,7 @@ Package: VBel
 Type: Package
 Title: Variational Bayes for Fast and Accurate Empirical Likelihood
         Inference
-Version: 1.0
+Version: 1.0.1
 Date: 2024-05-28
 Authors@R: c(
     person("Wei-Chang", "Yu", , "weichang.yu@unimelb.edu.au", role = c("aut"),
@@ -22,9 +22,9 @@ BugReports: https://github.com/jlimrasc/VBel/issues
 Suggests: mvtnorm, testthat (>= 3.0.0)
 Config/testthat/edition: 3
 NeedsCompilation: yes
-Packaged: 2024-05-28 05:25:23 UTC; jerem
+Packaged: 2024-05-31 06:33:57 UTC; jerem
 Author: Wei-Chang Yu [aut] (<https://orcid.org/0000-0002-0399-3779>),
   Jeremy Lim [cre, aut]
 Maintainer: Jeremy Lim <jeremy.lim@unimelb.edu.au>
 Repository: CRAN
-Date/Publication: 2024-05-28 16:20:09 UTC
+Date/Publication: 2024-06-04 09:47:20 UTC
