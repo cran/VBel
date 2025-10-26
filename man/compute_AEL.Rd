@@ -4,22 +4,22 @@
 \alias{compute_AEL}
 \title{Compute the Adjusted Empirical Likelihood}
 \usage{
-compute_AEL(th, h, lam0, a, z, iters = 500, returnH = FALSE)
+compute_AEL(th, h, lam0, a, z, iters = 500)
 }
 \arguments{
 \item{th}{p x 1 parameter vector to evaluate the AEL function at}
 
-\item{h}{User-defined moment-condition function. Note that output should be an (n-1) x K matrix where K is necessarily \eqn{\geq}{<=} p}
+\item{h}{User-defined moment-condition function.
+Note that output should be an n x K matrix where K is necessarily \eqn{\geq}{>=} p.
+Input format for h should be (zi, th) were zi corresponds to the ith observation's data and th is the parameter vector}
 
 \item{lam0}{Initial vector for Lagrange multiplier lambda}
 
 \item{a}{Positive scalar adjustment constant}
 
-\item{z}{(n-1) x d data matrix. Note that \eqn{\{z_i\}_{i=1}^{n-1}} is a sequence of d-dimensional data vectors}
+\item{z}{n x d data matrix. Note that \eqn{\{z_i\}_{i=1}^{n}} is a sequence of d-dimensional data vectors}
 
 \item{iters}{Number of iterations using Newton-Raphson for estimation of lambda. Default: \code{500}}
-
-\item{returnH}{Whether to return calculated values of h, H matrix and lambda. Default: `FALSE}
 }
 \value{
 A numeric value for the Adjusted Empirical Likelihood function
@@ -50,7 +50,7 @@ where \eqn{\lambda_{\text{AEL}}} satisfies the constraints
 }
 }
 \details{
-Note that theta (\code{th}) is a p-dimensional vector, \code{h} is a K-dimensional vector and K \eqn{\geq}{<=} p
+Note that theta (\code{th}) is a p-dimensional vector, \code{h} is a K-dimensional vector and K \eqn{\geq}{>=} p
 }
 \examples{
 # Generating 30 data points from a simple linear-regression model
@@ -58,7 +58,7 @@ set.seed(1)
 x     <- runif(30, min = -5, max = 5)
 vari  <- rnorm(30, mean = 0, sd = 1)
 y     <- 0.75 - x + vari
-z <- cbind(x, y)
+z     <- cbind(x, y)
 
 lam0  <- matrix(c(0,0), nrow = 2)
 th    <- matrix(c(0.8277, -1.0050), nrow = 2)
@@ -68,9 +68,9 @@ a     <- 0.00001
 iters <- 10
 
 # Specify moment condition functions for linear regression
-h <- function(z, th) {
-    xi      <- z[1]
-    yi      <- z[2]
+h <- function(zi, th) {
+    xi      <- zi[1]
+    yi      <- zi[2]
     h_zith  <- c(yi - th[1] - th[2] * xi, xi*(yi - th[1] - th[2] * xi))
     matrix(h_zith, nrow = 2)
 }
@@ -78,7 +78,7 @@ result <- compute_AEL(th, h, lam0, a, z, iters)
 }
 \references{
 Chen, J., Variyath, A. M., and Abraham, B. (2008), “Adjusted Empirical
-Likelihood and its Properties,” Journal of Computational and Graphical
+Likelihood and its Properties”, Journal of Computational and Graphical
 Statistics, 17, 426–443. Pages 2,3,4,5,6,7 \doi{doi:10.1198/106186008X321068}
 }
 \author{

@@ -15,7 +15,7 @@ compute_GVA(
   rho,
   epsil,
   a,
-  SDG_iters = 10000,
+  SGD_iters = 10000,
   AEL_iters = 500,
   verbosity = 500
 )
@@ -25,13 +25,18 @@ compute_GVA(
 
 \item{C0}{p x p initial lower triangular matrix of Gaussian VB Cholesky}
 
-\item{h}{User-defined moment-condition function. Note that output should be an (n-1) x K matrix where K is necessarily \eqn{\geq}{<=} p}
+\item{h}{User-defined moment-condition function.
+Note that output should be an n x K matrix where K is necessarily \eqn{\geq}{>=} p.
+Input format for h should be (zi, th) were zi corresponds to the ith observation's data and th is the parameter vector}
 
-\item{delthh}{User-defined first-order derivative of moment-condition function. Note that output should be a K x p  matrix of h(zi,th) with respect to theta}
+\item{delthh}{User-defined first-order derivative of moment-condition function.
+Note that output should be a K x p  matrix of h(zi,th) with respect to theta.
+Input format for h should be (zi, th) were zi corresponds to the ith observation's data and th is the parameter vector}
 
-\item{delth_logpi}{User-defined first-order derivative of log-prior function. Note that output should be a p x 1 vector}
+\item{delth_logpi}{User-defined first-order derivative of log-prior function.
+Note that output should be a p x 1 vector. Input format for h should be (th) the parameter vector}
 
-\item{z}{Data matrix, n-1 x d matrix}
+\item{z}{Data matrix, n x d matrix}
 
 \item{lam0}{Initial vector for Lagrange multiplier lambda}
 
@@ -41,11 +46,11 @@ compute_GVA(
 
 \item{a}{Positive scalar adjustment constant. For more accurate calculations, small values are recommended}
 
-\item{SDG_iters}{Number of Stochastic Gradient-Descent iterations for optimising mu and C. Default: 10,000}
+\item{SGD_iters}{Number of Stochastic Gradient-Descent iterations for optimising mu and C. Default: 10,000}
 
 \item{AEL_iters}{Number of iterations using Newton-Raphson for optimising AEL lambda. Default: 500}
 
-\item{verbosity}{Integer for how often to print updates on current iteration number. Default:500}
+\item{verbosity}{Integer for how often to print updates on current iteration number. To turn off, set to 0. Default:500}
 }
 \value{
 A list containing:  \enumerate{
@@ -54,9 +59,9 @@ size p x 1
 \item C_FC: VB Posterior Variance-Covariance (Cholesky) at
 final iteration. A lower-triangular matrix of size p x p
 \item mu_FC_arr: VB Posterior Mean for each iteration. A matrix
-of size p x (SDG_iters + 1)
+of size p x (SGD_iters + 1)
 \item C_FC_arr: VB Posterior Variance-Covariance (Cholesky) for
-each iteration. An array of size p x p x (SDG_iters + 1)
+each iteration. An array of size p x p x (SGD_iters + 1)
 }
 }
 \description{
@@ -77,15 +82,15 @@ lam0 <- matrix(c(0,0), nrow = 2)
 z    <- cbind(x, y)
 
 # Specify moment condition functions for linear regression and its corresponding derivative
-h    <- function(z, th) {
-    xi     <- z[1]
-    yi     <- z[2]
+h    <- function(zi, th) {
+    xi     <- zi[1]
+    yi     <- zi[2]
     h_zith <- c(yi - th[1] - th[2] * xi, xi*(yi - th[1] - th[2] * xi))
     matrix(h_zith, nrow = 2)
 }
 
-delthh <- function(z, th) {
-    xi <- z[1]
+delthh <- function(zi, th) {
+    xi <- zi[1]
     matrix(c(-1, -xi, -xi, -xi^2), 2, 2)
 }
 
@@ -102,7 +107,7 @@ mu0   <- matrix(unname(reslm$coefficients),2,1)
 C0    <- unname(t(chol(vcov(reslm))))
 
 # Specify details for ADADELTA (Stochastic Gradient-Descent)
-SDG_iters <- 50
+SGD_iters <- 50
 epsil     <- 10^-5
 rho       <- 0.9
 
@@ -110,12 +115,12 @@ rho       <- 0.9
 # Main
 # -----------------------------
 result <-compute_GVA(mu0, C0, h, delthh, delth_logpi, z, lam0, 
-rho, epsil, a, SDG_iters, AEL_iters)
+rho, epsil, a, SGD_iters, AEL_iters)
 
 }
 \references{
-Yu, W., & Bondell, H. D. (2023). Variational Bayes for Fast and
-Accurate Empirical Likelihood Inference. Journal of the American Statistical
+Yu, W., & Bondell, H. D. (2023). "Variational Bayes for Fast and
+Accurate Empirical Likelihood Inference", Journal of the American Statistical
 Association, 1–13. \doi{doi:10.1080/01621459.2023.2169701}
 }
 \author{

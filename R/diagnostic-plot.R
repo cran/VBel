@@ -5,10 +5,13 @@
 #' Posterior)
 #' 
 #'
-#' @param dataList Named list of data generated from \link{compute_GVA}
-#' @param muList Array of indices of mu_arr to plot. (default:all)
-#' @param cList Matrix of indices of variance to plot, 2xn matrix, each row is 
-#' (col,row) of variance matrix
+#' @param dataList  Named list of data generated from \link{compute_GVA}
+#' @param muList    Vector of indices of mu_arr to plot. (default: if data resolution (p) \eqn{\leq}{<=} 3, use all, 
+                 #' else use 1, \eqn{\lfloor p/2 \rfloor}{"p \%/\% 2"} and p
+#' @param cList     Matrix of indices of variance to plot, 2xn matrix, each row is 
+                 #' (col,row) of variance matrix. (default: if data resolution (p) \eqn{\leq}{<=} 3, use (1, 1) and (1, p), 
+                 #' else use (1, p), (\eqn{\lfloor p/2 \rfloor}{"p \%/\% 2"}, 1) and 
+                 #' (\eqn{\lfloor p/2 \rfloor}{"p \%/\% 2"}, \eqn{\lfloor p/2 \rfloor+1}{"p \%/\% 2 + 1"}))
 #'
 #' @return Matrix of variance of C_FC
 #' @export
@@ -51,7 +54,7 @@
 #' C_0     <- 1/sqrt(n) * t(chol(sigHat))
 #' 
 #' # Specify details for ADADELTA (Stochastic Gradient-Descent)
-#' SDG_iters   <- 5 # Number of iterations for GVA
+#' SGD_iters   <- 5 # Number of iterations for GVA
 #' epsil       <- 10^-5
 #' rho         <- 0.9
 #' 
@@ -60,7 +63,7 @@
 #' # -----------------------------
 #' # Compute GVA
 #' ansGVA <-compute_GVA(mu_0, C_0, h, delthh, delth_logpi, z, lam0, rho, epsil, 
-#' a, SDG_iters, AEL_iters)
+#' a, SGD_iters, AEL_iters)
 #' 
 #' # Plot graphs
 #' diagnostic_plot(ansGVA) # Plot all graphs
@@ -72,8 +75,9 @@ diagnostic_plot <- function(dataList, muList, cList) {
         if (p <= 3) {
             cList <- matrix(c(1, 1, 1, p), ncol = 2)
         } else {
-            cList <- matrix(c(1, p, floor(p / 2), 
-                              1, floor(p / 2), floor(p / 2) + 1), 
+            cList <- matrix(c(1, p, 
+                              floor(p / 2), 1, 
+                              floor(p / 2), floor(p / 2) + 1), 
                             ncol = 2)
         }
     }
@@ -151,5 +155,5 @@ diagnostic_plot <- function(dataList, muList, cList) {
         )
     }
     
-    return(variance_arr)
+    #return(variance_arr)
 }
