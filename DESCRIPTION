@@ -2,11 +2,11 @@ Package: VBel
 Type: Package
 Title: Variational Bayes for Fast and Accurate Empirical Likelihood
         Inference
-Version: 1.1.6
+Version: 1.1.7
 Authors@R: c(
-    person("Weichang", "Yu", , "weichang.yu@unimelb.edu.au", role = c("aut"),
+    person("Weichang", "Yu", , "weichang.yu@unimelb.edu.au", role = c("aut", "cre"),
     comment = c(ORCID = "0000-0002-0399-3779")),
-    person("Jeremy", "Lim", , "jeremy.lim@unimelb.edu.au", role = c("cre", "aut"))
+    person("Jeremy", "Lim", , "jeremy.lim@unimelb.edu.au", role = c("aut"))
   )
 Description: Computes the Gaussian variational approximation of the Bayesian 
     empirical likelihood posterior. This is an implementation of the function 
@@ -21,9 +21,9 @@ BugReports: https://github.com/jlimrasc/VBel/issues
 Suggests: mvtnorm, testthat (>= 3.0.0)
 Config/testthat/edition: 3
 NeedsCompilation: yes
-Packaged: 2025-10-25 12:18:19 UTC; jerem
-Author: Weichang Yu [aut] (ORCID: <https://orcid.org/0000-0002-0399-3779>),
-  Jeremy Lim [cre, aut]
-Maintainer: Jeremy Lim <jeremy.lim@unimelb.edu.au>
+Packaged: 2025-11-25 01:19:06 UTC; jerem
+Author: Weichang Yu [aut, cre] (ORCID: <https://orcid.org/0000-0002-0399-3779>),
+  Jeremy Lim [aut]
+Maintainer: Weichang Yu <weichang.yu@unimelb.edu.au>
 Repository: CRAN
-Date/Publication: 2025-10-26 18:40:09 UTC
+Date/Publication: 2025-11-28 13:00:42 UTC

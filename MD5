@@ -1,13 +1,13 @@
-6c4809c06049ef6a94130db65228c6a2 *DESCRIPTION
+10b349d4ae7aa8c6f02d42d300838ad8 *DESCRIPTION
 18fdf3691285685f7ee6ba47d5dfdcc9 *NAMESPACE
-e33420fd7b8335568dda2762836fc8cf *NEWS.md
+81623880e8d5562b50faa0b2275bb3e4 *NEWS.md
 6fdd80876f111abecf865aff2700d73f *R/RcppExports.R
 5fa5bdf3dec9a66540b994137f2cb6cf *R/VBel-package.R
 1f6ddcb30b200cbaad8e591afd29cbf5 *R/compute-AEL-functions.R
 ae0b3ea3dcfcba22170dfbe78ffa4beb *R/compute-GVA-functions.R
 2dca79852305a158e2d29224e15efe62 *R/diagnostic-plot.R
 ee5fa01c7c1eef73a5f933b6aca5f2fe *README.md
-c62862d84aa20c7844a43fa06fc333a1 *build/partial.rdb
+cbd4e536f0c1508c4fe25bfbf43fd2a3 *build/partial.rdb
 91fbf95bcdeab7b76272b6f90cf7ac84 *man/VBel-package.Rd
 d30595d0650ddd07c93ccd52f7a7ee38 *man/compute_AEL.Rd
 a2d9131967d0281769a2ec83f501eec4 *man/compute_GVA.Rd
